@@ -120,7 +120,11 @@ module CI
       end
 
       def skipped?
-        skipped
+        failures.any?(&:skipped?)
+      end
+      
+      def skipped_count
+        failures.count(&:skipped?)
       end
 
       # Writes xml representing the test result to the provided builder.
